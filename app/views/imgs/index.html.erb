@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>English Image</title>
+  <link rel="stylesheet" type="text/css" href="../../assets/stylesheets/style.css">  
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <script>
+    var slideIndex = 1;
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+      showDivs(slideIndex += n);
+    }
+
+    function showDivs(n) {
+      var i;
+      var x = document.getElementsByClassName("mySlides");
+      var t = document.getElementsByClassName("traducao");
+      if (n > x.length) {slideIndex = 1}    
+      if (n < 1) {slideIndex = x.length}
+      for (i = 0; i < x.length; i++) {
+         x[i].style.display = "none";  
+      }
+      x[slideIndex-1].style.display = "block";  
+
+      if (n > t.length) {slideIndex = 1}    
+      if (n < 1) {slideIndex = t.length}
+      for (i = 0; i < t.length; i++) {
+         t[i].style.display = "none";  
+      }
+      t[slideIndex-1].style.display = "block";
+    }
+  </script>
+</head>
+
+<body>
+
+  <header>          
+      <input type="text" placeholder="Search for...">
+      <button type="button">Go!</button>        
+  </header>
+  <% x=1 %>
+  <!-- =============================== -->
+   <% @imgs.each do |img| %>
+  <article>
+    <div class="" ="w3-content w3-display-container">
+
+    <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+      <% if x == 1 
+        x = 0
+        %>
+        <img class="mySlides" src="<%= img.link %>">
+      <% 
+      else 
+      %>
+        <img class="mySlides" src="<%= img.link %>">
+      <% end %>
+      
+      <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+    </div>
+  </article>
+
+<!-- =============================== -->
+  <footer>
+    <p class="traducao"><%= img.nome %> | <%= img.traducao %></p>
+  </footer>
+  <% end %>
+
+  <script>  
+    /* Pressionar o teclado */
+    document.querySelector('body').addEventListener('keydown', function(event) {
+      if(event.keyCode == 39){
+        plusDivs(1);
+      }
+      if(event.keyCode == 37){
+        plusDivs(-1);
+      }
+ 
+    });
+  </script>
+  
+
+</body>
+</html>
+
+
+<!--
+
+<p id="notice"><%= notice %></p>
+
+<h1>Imgs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Traducao</th>
+      <th>Link</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @imgs.each do |img| %>
+      <tr>
+        <td><%= img.nome %></td>
+        <td><%= img.traducao %></td>
+        <td><%= img.link %></td>
+        <td><%= link_to 'Show', img %></td>
+        <td><%= link_to 'Edit', edit_img_path(img) %></td>
+        <td><%= link_to 'Destroy', img, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Img', new_img_path %> -->
