@@ -42,31 +42,41 @@
       <button type="button">Go!</button>        
   </header>
   <% x=1 %>
-  <!-- =============================== -->
-   <% @imgs.each do |img| %>
-  <article>
-    <div class="" ="w3-content w3-display-container">
+    <!-- =============================== -->
+  <% @imgs.each do |img| %>
+    <article>
+      <div class="" ="w3-content w3-display-container">
 
-    <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-      <% if x == 1 
-        x = 0
+      <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+        <% if x == 1 
+          %>
+          <img class="mySlides" src="<%= img.link %>">
+        <% 
+        else 
         %>
-        <img class="mySlides" src="<%= img.link %>">
-      <% 
-      else 
-      %>
-        <img class="mySlides" src="<%= img.link %>">
-      <% end %>
-      
-      <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
-    </div>
-  </article>
+          <img class="mySlides" src="<%= img.link %>" style="display: none;">
+        <% end %>
+        
+        <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+      </div>
+    </article>
 
-<!-- =============================== -->
-  <footer>
-    <p class="traducao"><%= img.nome %> | <%= img.traducao %></p>
-  </footer>
-  <% end %>
+    <!-- =============================== -->
+    <footer>
+    <% if x == 1 
+          %>
+      <p class="traducao"><%= img.nome %> | <%= img.traducao %></p>
+      <% 
+        else 
+        %>
+        <p class="traducao" style="display: none;"><%= img.nome %> | <%= img.traducao %></p>
+        <% end %>
+    </footer>
+
+  <% 
+  x = 0
+  end 
+  %>
 
   <script>  
     /* Pressionar o teclado */
